@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 // Create a scene
 var scene = new THREE.Scene();
 
