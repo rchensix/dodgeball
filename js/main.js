@@ -31,24 +31,26 @@ window.addEventListener('resize', () => {
 });
 
 // Create a geometry
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new THREE.SphereGeometry(0.5, 16, 16);
 
 // Create a material
-const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+const material = new THREE.MeshLambertMaterial({color: 0x00ff00});
 
 // Combine the geometry and material into a mesh
-const cube = new THREE.Mesh(geometry, material);
+const sphere = new THREE.Mesh(geometry, material);
 
 // Add the mesh to the scene
-scene.add(cube);
+scene.add(sphere);
 
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
 
-    // Rotate the cube
-    cube.rotation.x += (mouse.y - cube.rotation.x) * 0.05;
-    cube.rotation.y += (mouse.x - cube.rotation.y) * 0.05;
+    // Translate the sphere.
+    const targetX = mouse.x * 4;
+    const targetY = mouse.y * 3;
+    sphere.position.x += (targetX - sphere.position.x) * 0.01;
+    sphere.position.y += (targetY - sphere.position.y) * 0.01;
 
     // Render the scene with the camera
     renderer.render(scene, camera);
